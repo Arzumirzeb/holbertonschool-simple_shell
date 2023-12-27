@@ -10,14 +10,15 @@
 int main(int ac, char **av)
 {
 	char **argv = NULL;
+	char *line = NULL;
 	int i, j, status;
 	pid_t fork_id;
 	(void)ac;
 
 	while (1)
 	{
-		j = _getline(argv);
-
+		j = _getline();
+		argv = _split(line, " ");
 		if (j < 0)
 			break;
 

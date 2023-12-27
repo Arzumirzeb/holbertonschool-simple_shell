@@ -7,7 +7,7 @@
  * Return: 1 on Success, -1 on fail
  */
 
-int _getline(char **argv)
+int *_getline(void)
 {
 	char *line = NULL;
 	int j; 
@@ -18,12 +18,8 @@ int _getline(char **argv)
 	j = getline(&line, &len, stdin);
 
 	if (j == -1)
-	{
 		free(line);
-		return (-1);
-	}
-
-	argv = _split(line, " ");
-	
-	return (1);
+	else
+		return (line);
+	return (NULL);
 }
