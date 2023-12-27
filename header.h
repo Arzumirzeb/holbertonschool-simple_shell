@@ -7,4 +7,6 @@
 #include <errno.h>
 #include <string.h>
 
+char **_split(char *str, char *delim);
+
 #endif
