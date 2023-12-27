@@ -47,5 +47,8 @@ char **_split(char *str, char *delim)
 			break;
 	}
 
+	arr = (char **) realloc(arr, sizeof(char *) * 1);
+	arr[i + 1] = NULL;
+
 	return (arr);
 }

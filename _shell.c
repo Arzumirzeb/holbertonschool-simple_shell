@@ -9,48 +9,26 @@
 
 int main(int ac, char **av)
 {
-	char *line = NULL;
-	size_t len = 0;
-	char **argv;
+	char **argv = NULL;
 	int i, j, status;
 	pid_t fork_id;
 	(void)ac;
 
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
-			printf("#cisfun$ ");
-		j = getline(&line, &len, stdin);
+		j = _getline(argv);
 
-		if (j == -1)
+		if (j < 0)
 			break;
-
-		argv = malloc(sizeof(char *) * 2);
-
-		if (argv == NULL)
-		{
-			free(argv);
-			return (-1);
-		}
-
-		argv[0] = malloc(sizeof(char) * len + 1);
-
-		if (argv[0] == NULL)
-		{
-			free(argv[0]);
-			free(argv);
-			break;
-		}
-
-		argv[0] = line;
 
 		if (argv[0][0] == '\n')
 			continue;
 
-		for (i = 0; argv[0][i] != '\n'; i++);
+		for (i = 0; argv[i + 1] != NULL; i++);
 
-		argv[0][i] = '\0';
-		argv[1] = NULL;
+		for (j = 0; argv[i][j] != '\n'; j++);
+
+		argv[i][j] = '\0';
 
 		fork_id = fork();
 
