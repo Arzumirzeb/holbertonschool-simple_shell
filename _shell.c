@@ -9,20 +9,27 @@
 
 int main(int ac, char **av)
 {
-	char **argv = NULL;
+	char **argv;
+	char *line = NULL;
 	int i, j, status;
 	pid_t fork_id;
 	(void)ac;
 
 	while (1)
 	{
-		j = _getline(argv);
+		j = _getline(&line);
 
 		if (j < 0)
 			break;
 
+		argv = _split(line, " ");
+
 		if (argv[0][0] == '\n')
+		{
+			free(line);
+			free(argv);
 			continue;
+		}
 
 		for (i = 0; argv[i + 1] != NULL; i++);
 
@@ -40,7 +47,11 @@ int main(int ac, char **av)
 			}
 		}
 		else
+		{
+			free(line);
+			free(argv);
 			wait(&status);
+		}
 	}
 
 

@@ -20,7 +20,7 @@ char **_split(char *str, char *delim)
 
 	if (word != NULL)
 	{
-		arr = malloc(sizeof(char *) * 1);
+		arr = (char **)malloc(sizeof(char *) * 1);
 
 		if (arr == NULL)
 		{
@@ -46,7 +46,7 @@ char **_split(char *str, char *delim)
 		else
 			break;
 	}
-
+ 
 	arr = (char **) realloc(arr, sizeof(char *) * 1);
 	arr[i + 1] = NULL;
 

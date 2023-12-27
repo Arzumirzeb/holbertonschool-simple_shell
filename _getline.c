@@ -7,23 +7,22 @@
  * Return: 1 on Success, -1 on fail
  */
 
-int _getline(char **argv)
+int _getline(char **line)
 {
-	char *line = NULL;
 	int j; 
 	size_t len = 0;
 
 	if (isatty(STDIN_FILENO))
 		printf("#cisfun$ ");
-	j = getline(&line, &len, stdin);
+	j = getline(line, &len, stdin);
 
 	if (j == -1)
 	{
-		free(line);
 		return (-1);
 	}
 
-	argv = _split(line, " ");
-	
+	// printf("%s\n", line);
+
+	// argv = _split(line, " ");
 	return (1);
 }
