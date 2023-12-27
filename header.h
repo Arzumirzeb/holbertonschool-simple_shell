@@ -8,5 +8,6 @@
 #include <string.h>
 
 char **_split(char *str, char *delim);
+int _getline(char **argv);
 
 #endif
