@@ -153,5 +153,5 @@ Simple shell 0.4 +
 *	Implement the env built-in, that prints the current environment
 
 ## Authors
-*	Yashar Heyderov-[Github]
+*	Yashar Heyderov-[Github]https://github.com/heydarov93/
 *	Arzu Mirzabayova-[Github]https://github.com/Arzumirzeb/
