@@ -10,23 +10,32 @@
 int main(int ac, char **av)
 {
 	char **argv;
-	char *line = NULL;
-	int i, j, status;
+	char *line, *cp_line;
+	int i, j, if_read_fail, status;
 	pid_t fork_id;
 	(void)ac;
 
 	while (1)
 	{
-		j = _getline(&line);
+		line = NULL;
+		if_read_fail = _getline(&line);
 
-		if (j < 0)
-			break;
+		if (if_read_fail == -1)
+		{
+			free(line);
+			exit(0);
+		}
 
-		argv = _split(line, " ");
+		cp_line = strdup(line);
+		free(line);
+		argv = _split(cp_line, " ");
+
+		if (argv == NULL)
+			exit(1);
 
 		if (argv[0][0] == '\n')
 		{
-			free(line);
+			//free_twod_array(argv);
 			free(argv);
 			continue;
 		}
@@ -43,12 +52,14 @@ int main(int ac, char **av)
 		{
 			if (execve(argv[0], argv, NULL) == -1)
 			{
+				//free_twod_array(argv);
+				free(argv);
 				fprintf(stderr, "%s: %s\n", av[0], strerror(errno));
 			}
 		}
 		else
 		{
-			free(line);
+			//free_twod_array(argv);
 			free(argv);
 			wait(&status);
 		}

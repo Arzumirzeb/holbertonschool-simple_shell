@@ -9,5 +9,6 @@
 
 char **_split(char *str, char *delim);
 int _getline(char **line);
+void free_twod_array(char **arr);
 
 #endif

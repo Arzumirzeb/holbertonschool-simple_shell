@@ -10,17 +10,18 @@
 
 char **_split(char *str, char *delim)
 {
-	char *cp_str, *word;
+	char *word;
 	char **arr;
 	int i;
 
-	cp_str = strdup(str);
+	//cp_str = strdup(str);
+	//free(str);
 
-	word = strtok(cp_str, delim);
+	word = strtok(str, delim);
 
 	if (word != NULL)
 	{
-		arr = (char **)malloc(sizeof(char *) * 1);
+		arr = (char **)malloc(sizeof(char *) * 2);
 
 		if (arr == NULL)
 		{
@@ -32,13 +33,15 @@ char **_split(char *str, char *delim)
 	for (i = 0; 1; i++)
 	{
 		arr[i] = word;
+		arr[i + 1] = NULL;
 
 		word = strtok(NULL, delim);
 		if (word != NULL)
 		{
-			arr = (char **) realloc(arr, sizeof(char *) * 1);
+			arr = (char **) realloc(arr, sizeof(char *) * (i + 3));
 			if (arr == NULL)
 			{
+				//free_twod_array(arr);
 				free(arr);
 				return (NULL);
 			}
@@ -46,9 +49,6 @@ char **_split(char *str, char *delim)
 		else
 			break;
 	}
- 
-	arr = (char **) realloc(arr, sizeof(char *) * 1);
-	arr[i + 1] = NULL;
 
 	return (arr);
 }

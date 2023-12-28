@@ -9,20 +9,15 @@
 
 int _getline(char **line)
 {
-	int j; 
 	size_t len = 0;
 
 	if (isatty(STDIN_FILENO))
 		printf("#cisfun$ ");
-	j = getline(line, &len, stdin);
 
-	if (j == -1)
+	if (getline(line, &len, stdin) == -1)
 	{
-		return (-1);
+		return(-1);
 	}
 
-	// printf("%s\n", line);
-
-	// argv = _split(line, " ");
 	return (1);
 }
