@@ -3,68 +3,52 @@
 
 /**
  * main - entry point
+ * @ac: count of arguments
+ * @av: array of arguments values
  *
  * Return: 0 on success
  */
 
 int main(int ac, char **av)
 {
-	char *line = NULL;
-	size_t len = 0;
 	char **argv;
-	int i, j, status;
+	char *line, *cp_line;
+	int status;
 	pid_t fork_id;
 	(void)ac;
 
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
-			printf("#cisfun$ ");
-		j = getline(&line, &len, stdin);
-
-		if (j == -1)
-			break;
-
-		argv = malloc(sizeof(char *) * 2);
-
-		if (argv == NULL)
+		line = NULL;
+		if (_getline(&line) < 0)
 		{
-			free(argv);
-			return (-1);
+			free(line);
+			exit(0);
 		}
-
-		argv[0] = malloc(sizeof(char) * len + 1);
-
-		if (argv[0] == NULL)
+		if (line[0] == '\n')
 		{
-			free(argv[0]);
-			free(argv);
-			break;
-		}
-
-		argv[0] = line;
-
-		if (argv[0][0] == '\n')
+			free(line);
 			continue;
-
-		for (i = 0; argv[0][i] != '\n'; i++);
-
-		argv[0][i] = '\0';
-		argv[1] = NULL;
+		}
+		cp_line = strdup(line);
+		free(line);
+		argv = _split(cp_line, " \n\t");
 
 		fork_id = fork();
-
 		if (fork_id == 0)
 		{
-			if (execve(argv[0], argv, NULL) == -1)
+			if (execve(argv[0], argv, environ) == -1)
 			{
+				free(argv);
 				fprintf(stderr, "%s: %s\n", av[0], strerror(errno));
 			}
+			exit(1);
 		}
 		else
+		{
+			free(argv);
 			wait(&status);
+		}
 	}
-
-
 	return (0);
 }
