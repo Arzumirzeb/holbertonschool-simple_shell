@@ -5,7 +5,7 @@
  * @str: string to split
  * @delim: separator, delimiter
  *
- * Return: pointer to two dimensional array
+ * Return: pointer to two dimensional array on Success
  */
 
 char **_split(char *str, char *delim)
@@ -13,9 +13,6 @@ char **_split(char *str, char *delim)
 	char *word;
 	char **arr;
 	int i;
-
-	//cp_str = strdup(str);
-	//free(str);
 
 	word = strtok(str, delim);
 
@@ -26,7 +23,7 @@ char **_split(char *str, char *delim)
 		if (arr == NULL)
 		{
 			free(arr);
-			return (NULL);
+			exit(1);
 		}
 	}
 
@@ -41,9 +38,8 @@ char **_split(char *str, char *delim)
 			arr = (char **) realloc(arr, sizeof(char *) * (i + 3));
 			if (arr == NULL)
 			{
-				//free_twod_array(arr);
 				free(arr);
-				return (NULL);
+				exit(1);
 			}
 		}
 		else

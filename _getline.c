@@ -2,7 +2,7 @@
 
 /**
  * _getline - creates command array based on input
- * @argv: pointer to 2D array
+ * @line: pointer to pointer
  *
  * Return: 1 on Success, -1 on fail
  */
@@ -16,7 +16,7 @@ int _getline(char **line)
 
 	if (getline(line, &len, stdin) == -1)
 	{
-		return(-1);
+		return (-1);
 	}
 
 	return (1);
