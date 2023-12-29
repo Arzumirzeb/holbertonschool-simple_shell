@@ -13,7 +13,7 @@ int main(int ac, char **av)
 {
 	char **argv;
 	char *line, *cp_line;
-	int status;
+	int status, i;
 	pid_t fork_id;
 	(void)ac;
 
@@ -46,10 +46,13 @@ int main(int ac, char **av)
 		}
 		else
 		{
-			free(argv);
 			wait(&status);
 		}
+		for (i = 0; argv[i]; i++)
+			free(argv[i]);
+		free(argv);
 	}
+	free(cp_line);
 	free(line);
 	return (0);
 }
