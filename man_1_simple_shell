@@ -1,0 +1,52 @@
+.TH man 1 "December 2023" "version 0.1" "simple_shell man page"
+
+.SH NAME
+-simple_shell / a simple shell program
+
+.SH SYNOPSIS
+-shell_program / hsh [options] [file]
+
+.SH DESCRIPTION
+The simple-shell is a basic command-line interpreter that allows users to enter commands for execution. It provides a simple interface to the underlying operating system.
+
+.SH OPTIONS
+No command-line options are supported.
+
+.SH COMMANDS
+The simple-shell supports the following built-in commands:
+
+.BR exit
+Exit the simple-shell. If a status is provided, it will be used as the exit status.
+
+.SH USAGE / COMPILATION
+All files are to be compiled using "gcc -Wall -Werror -Wextra -pedantic *.c -o hsh"
+
+.SH EXAMPLES
+.PP
+.PP
+$ ./hsh
+.PP
+##---> /bin/ls
+.PP
+hsh main.c shell.c
+.PP
+##---> exit
+.PP
+$
+.PP
+.PP
+
+.SH PATH
+It will look inside al directions in PATH env variable for executable.
+
+.SH SEE ALSO
+bash(1), sh(1), execve(2)
+
+.SH BUGS
+Single space required after argument.
+
+.SH COPYRIGHT
+This is free software; see the source for copying conditions. There is NO warranty;
+
+.SH AUTHOR
+Created by Yashar Heyderov and Arzu Mirzabayova
