@@ -50,6 +50,7 @@ int main(int ac, char **av)
 			wait(&status);
 		}
 	}
+	free(cp_line);
 	free(line);
 	return (0);
 }
