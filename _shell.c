@@ -25,7 +25,7 @@ int main(int ac, char **av)
 
 		argv = _split(line, " \n\t");
 		free(line);
-		
+
 		if (!*argv)
 		{
 			free(argv);
