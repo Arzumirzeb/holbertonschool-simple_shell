@@ -12,28 +12,31 @@
 int main(int ac, char **av)
 {
 	char **argv;
-	char *line, *cp_line;
+	char *line;
 	int status, i;
 	pid_t fork_id;
 	(void)ac;
 
 	while (1)
 	{
-		line = NULL;
-		if (_getline(&line) < 0)
+		line = _getline();
+		if (!line)
+			break;
+
+		argv = _split(line, " \n\t");
+		free(line);
+		
+		if (!*argv)
 		{
-			free(line);
-			exit(0);
-		}
-		if (line[0] == '\n')
-		{
-			free(line);
+			free(argv);
 			continue;
 		}
-		cp_line = strdup(line);
-		free(line);
-		argv = _split(cp_line, " \n\t");
-
+		if (access(argv[0], X_OK) == -1)
+		{
+			fprintf(stderr, "%s: command not found\n", argv[0]);
+			free(argv);
+			continue;
+		}
 		fork_id = fork();
 		if (fork_id == 0)
 		{
@@ -52,7 +55,6 @@ int main(int ac, char **av)
 			free(argv[i]);
 		free(argv);
 	}
-	free(cp_line);
 	free(line);
 	return (0);
 }

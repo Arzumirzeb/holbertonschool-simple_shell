@@ -1,23 +1,22 @@
 #include "header.h"
 
 /**
- * _getline - creates command array based on input
- * @line: pointer to pointer
- *
- * Return: 1 on Success, -1 on fail
+ * _getline - function to implement getline
+ * Return: NULL
  */
 
-int _getline(char **line)
+char *_getline(void)
 {
-	size_t len = 0;
+	char *line = NULL;
+	size_t size = 0;
+	int checker;
 
 	if (isatty(STDIN_FILENO))
 		printf("#cisfun$ ");
-
-	if (getline(line, &len, stdin) == -1)
-	{
-		return (-1);
-	}
-
-	return (1);
+	checker = getline(&line, &size, stdin);
+	if (checker == -1)
+		free(line);
+	else
+		return (line);
+	return (NULL);
 }

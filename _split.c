@@ -11,40 +11,23 @@
 char **_split(char *str, char *delim)
 {
 	char *word;
-	char **arr;
-	int i;
+	char **arr = malloc(strlen(str) * sizeof(char *));
+	int i = 0;
 
 	word = strtok(str, delim);
 
-	if (word != NULL)
+	while (word != NULL)
 	{
-		arr = (char **)malloc(sizeof(char *) * 2);
+		arr[i] = strdup(word);
 
-		if (arr == NULL)
+		if (arr[i] == NULL)
 		{
-			free(arr);
+			free(arr[i]);
 			exit(1);
 		}
-	}
-
-	for (i = 0; 1; i++)
-	{
-		arr[i] = word;
-		arr[i + 1] = NULL;
-
+		i++;
 		word = strtok(NULL, delim);
-		if (word != NULL)
-		{
-			arr = (char **) realloc(arr, sizeof(char *) * (i + 3));
-			if (arr == NULL)
-			{
-				free(arr);
-				exit(1);
-			}
-		}
-		else
-			break;
 	}
-
+	arr[i] = NULL;
 	return (arr);
 }
