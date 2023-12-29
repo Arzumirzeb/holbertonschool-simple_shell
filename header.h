@@ -9,7 +9,7 @@
 
 extern char **environ;
 char **_split(char *str, char *delim);
-int _getline(char **line);
+char *_getline(void);
 void free_twod_array(char **arr);
 
 #endif
