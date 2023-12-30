@@ -77,7 +77,7 @@ void free_array(char **arr)
 int main(int ac, char **av)
 {
 	char **argv, *line;
-	int status, i;
+	int status;
 	pid_t fork_id;
 	(void)ac;
 
