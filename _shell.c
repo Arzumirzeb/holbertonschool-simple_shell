@@ -14,7 +14,7 @@ void create_full_path(char **command, char *program_name)
 	size_t size_tmp;
 
 	path = strdup(getenv("PATH"));
-	if (path == NULL || path = "")
+	if (path == NULL || path == "")
 	{
 		free(path);
 		fprintf(stderr, "%s: 1: %s not found\n", program_name, *command);
