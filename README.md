@@ -94,7 +94,7 @@ Your code will be compiled this way:
 $ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
 ```
-# Tasks
+# TASKS
 **0. README, man, AUTHORS**
 *	Write a README
 *	Write a man for your shell.
