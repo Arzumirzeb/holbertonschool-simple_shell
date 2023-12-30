@@ -1,6 +1,6 @@
 # C - Simple Shell Group Work
 
-## HSH: The Holberton SHELL
+## HSH: The Holberton Shell
 In a software engineering context, a shell is a user interface that provides access to an operating system's services. When you're working on a Holberton Shell project, it likely involves creating a simple shell program that can interpret and execute commands.
 ## GENERAL
 -**Who designed and implemented the original Unix operating system:**
