@@ -22,6 +22,7 @@ void create_full_path(char **command)
 
 		if (tmp == NULL)
 		{
+			free(path);
 			free(tmp);
 			return;
 		}
@@ -37,11 +38,13 @@ void create_full_path(char **command)
 		}
 		else
 		{
+			free(path);
 			free(*command);
 			*command = tmp;
 			return;
 		}
 	}
+	free(path);
 }
 
 
