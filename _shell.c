@@ -17,7 +17,7 @@ void create_full_path(char **command, char *program_name)
 	if (path == NULL || strlen(path) == 0)
 	{
 		free(path);
-		fprintf(stderr, "%s: 1: %s not found\n", program_name, *command);
+		fprintf(stderr, "%s: 1: %s not found \n", program_name, *command);
 		exit(127);
 	}
 	single_path = strtok(path, ":");
@@ -79,8 +79,8 @@ int main(int ac, char **av)
 			free(argv);
 			continue;
 		}
-
-		create_full_path(&argv[0], av[0]);
+		if (getenv("PATH"))
+			create_full_path(&argv[0], av[0]);
 		fork_id = fork();
 		if (fork_id == 0)
 		{
