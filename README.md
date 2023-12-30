@@ -154,10 +154,11 @@ Simple shell 0.4 +
 |[AUTHORS](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/AUTHORS)|Contributors in this repository|
 |[README.md](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/README.md)|Information about our repository|
 |[_getline.c](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/_getline.c)|Gets input|
-|[_shell.c](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/_shell.c)|Main arguments functions|
-|[_split.c](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/_split.c)|For split outputs|
+|[shell.c](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/shell.c)|Main arguments functions|
+|[splitter.c](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/splitter.c)|For split outputs|
+|[execute.c](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/execute.c)|For execute code|
 |[man_1_simple_shell](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/man_1_simple_shell)|Manual page our of Simple Shell|
-|[header.h](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/header.h)|Prototypes functions and headers|
+|[main.h](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/main.h)|Prototypes functions and headers|
 
 ## Flowchart
 
