@@ -93,12 +93,14 @@ int main(int ac, char **av)
 			free(argv);
 			continue;
 		}
-		if (create_full_path(&argv[0], av[0]) == -1)
+		if (create_full_path(&argv[0], av[0]) == -1 ||
+				access(argv[0], X_OK) == -1)
 		{
+			fprintf(stderr, "%s: 1: %s not found \n", av[0], argv[0]);
 			free_array(argv);
+			free(argv);
 			exit(127);
 		}
-
 		fork_id = fork();
 		if (fork_id == 0)
 		{
