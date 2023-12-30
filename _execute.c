@@ -7,24 +7,24 @@
  * Return: the exit status of the executed command,
  * or -1 if an error occurs.
  */
-int execute(char *command)
+int execute(char *line)
 {
         int status = 0;
         pid_t fork_id = fork();
 
-        if (pid == -1)
+        if (fork_id == -1)
         {
                 perror("fork");
-                free(str);
+                free(line);
                 exit(EXIT_FAILURE);
         }
-        else if (pid == 0)
+        else if (fork_id == 0)
         {
                 char *argv[64];
                 line_div(str, delim);
-                if (arr[0] == NULL)
+                if (argv[0] == NULL)
                 {
-                        free(str);
+                        free(line);
                         exit(EXIT_SUCCESS);
                 }
                 if (strcmp(argv[0], "env") == 0)
@@ -36,7 +36,7 @@ int execute(char *command)
                                 printf("%s\n", *env);
                                 env++;
                         }
-                        free(str);
+                        free(line);
                         exit(EXIT_SUCCESS);
                 }
                 if (strchr(argv[0], '/') != NULL)
@@ -46,7 +46,7 @@ int execute(char *command)
                                 if (execve(argv[0], delim, environ) == -1)
                                 {
                                         perror("execve");
-                                        free(str);
+                                        free(line);
                                         exit(EXIT_FAILURE);
                                 }
                         }
@@ -54,11 +54,11 @@ int execute(char *command)
                 else
                 {
                         char *path = getenv("PATH");
-                        char *token;
+                        char *word;
                         if (path == NULL)
                         {
                                 fprintf(stderr, "./hsh: 1: %s: not found\n", argv[0]);
-                                free(str);
+                                free(line);
                                 exit(127);
                         }
                         word = strtok(path, ":");
@@ -71,7 +71,7 @@ int execute(char *command)
                                         if (execve(executable_path, delim, environ) == -1)
                                         {
                                                 perror("execve");
-                                                free(str);
+                                                free(line);
                                                 exit(EXIT_FAILURE);
                                         }
                                 }
@@ -79,13 +79,13 @@ int execute(char *command)
                         }
                 }
                 fprintf(stderr, "./hsh: 1: %s: not found\n", argv[0]);
-                free(str);
+                free(line);
                 exit(127);
         }
         else
         {
                 waitpid(fork_id, &status, 0);
-                free(str);
+                free(line);
                 if (WIFEXITED(status))
                         status = WEXITSTATUS(status);
                 else
