@@ -85,6 +85,7 @@ You need to make sure that this shell tested and garantees work based on `gcc-4.
 *	No more than 5 functions per file
 *	All your header files should be include guarded
 *	Use system calls only when you need to (why?)
+<<<<<<< HEAD
 ##  Authorized functions and system calls
 *   `access` (man 2 access)
 *   `chdir` (man 2 chdir)
@@ -117,6 +118,9 @@ You need to make sure that this shell tested and garantees work based on `gcc-4.
 *   `wait3` (man 2 wait3)
 *   `wait4` (man 2 wait4)
 *   `write` (man 2 write)
+=======
+
+>>>>>>> be270ac1c176b711a1eb999fe175051de099c9e1
 ### Compilation
 
 Your code will be compiled this way:
@@ -178,6 +182,25 @@ Simple shell 0.4 +
 
 *	Implement the env built-in, that prints the current environment
 
+<<<<<<< HEAD
+=======
+## Files
+
+|File|Description|
+|---|---|
+|[AUTHORS](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/AUTHORS)|Contributors in this repository|
+|[README.md](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/README.md)|Information about our repository|
+|[_getline.c](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/_getline.c)|Gets input|
+|[_shell.c](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/_shell.c)|Main arguments functions|
+|[_split.c](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/_split.c)|For split outputs|
+|[man_1_simple_shell](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/man_1_simple_shell)|Manual page our of Simple Shell|
+|[header.h](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/header.h)|Prototypes functions and headers|
+
+## Flowchart
+
+<p align="center"><img src="https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/simple_shell.png"></p>
+
+>>>>>>> be270ac1c176b711a1eb999fe175051de099c9e1
 ## Authors
 *	Yashar Heyderov-[Github]https://github.com/heydarov93/
 *	Arzu Mirzabayova-[Github]https://github.com/Arzumirzeb/

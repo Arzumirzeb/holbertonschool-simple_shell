@@ -2,7 +2,8 @@
 
 /**
  * _getline - function to implement getline
- * Return: NULL
+ *
+ * Return: pointer to buffer on Success, NULL on fail
  */
 
 char *_getline(void)
