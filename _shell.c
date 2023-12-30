@@ -4,29 +4,33 @@
 /**
  * create_full_path - creates full path from single command
  * @command: single command
+ * @program_name: name of the program
  */
 
-void create_full_path(char **command)
+void create_full_path(char **command, char *program_name)
 {
 	int length_command = strlen(*command);
 	char *tmp, *single_path, *path;
 	size_t size_tmp;
 
 	path = strdup(getenv("PATH"));
+	if (path == NULL)
+	{
+		free(path);
+		fprintf(stderr, "%s: 1: %s not found\n", program_name, *command);
+		exit(127);
+	}
 	single_path = strtok(path, ":");
-
 	while (single_path != NULL)
 	{
 		size_tmp = strlen(single_path) + length_command + 2;
 		tmp = malloc(sizeof(char) * size_tmp);
-
 		if (tmp == NULL)
 		{
 			free(path);
 			free(tmp);
 			return;
 		}
-
 		strcpy(tmp, single_path);
 		strcat(tmp, "/");
 		strcat(tmp, *command);
@@ -76,7 +80,7 @@ int main(int ac, char **av)
 			continue;
 		}
 
-		create_full_path(&argv[0]);
+		create_full_path(&argv[0], &av[0]);
 		fork_id = fork();
 		if (fork_id == 0)
 		{
