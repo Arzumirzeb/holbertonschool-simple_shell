@@ -94,6 +94,13 @@ int main(int ac, char **av)
 			continue;
 		}
 
+		if (strcmp(argv[0], "exit") == 0)
+		{
+			free_array(argv);
+			free(argv);
+			exit(0);
+		}
+
 		if (strcmp(argv[0], "env") == 0)
 		{
 			char **env = environ;
