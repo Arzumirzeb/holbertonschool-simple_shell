@@ -93,6 +93,21 @@ int main(int ac, char **av)
 			free(argv);
 			continue;
 		}
+
+		if (strcmp(argv[0], "env") == 0)
+		{
+			char **env = environ;
+
+			while (*env != NULL)
+			{
+				printf("%s\n", *env);
+				env++;
+			}
+			free_array(argv);
+			free(argv);
+			continue;
+		}
+
 		if (create_full_path(&argv[0], av[0]) == -1 ||
 				access(argv[0], X_OK) == -1)
 		{
