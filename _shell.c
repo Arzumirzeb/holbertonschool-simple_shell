@@ -80,7 +80,7 @@ int main(int ac, char **av)
 			continue;
 		}
 
-		create_full_path(&argv[0], &av[0]);
+		create_full_path(&argv[0], av[0]);
 		fork_id = fork();
 		if (fork_id == 0)
 		{
