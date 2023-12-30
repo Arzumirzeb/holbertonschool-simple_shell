@@ -157,7 +157,7 @@ Simple shell 0.4 +
 |[shell.c](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/shell.c)|Main arguments functions|
 |[splitter.c](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/splitter.c)|For split outputs|
 |[execute.c](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/execute.c)|For execute code|
-|[man_1_simple_shell](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/man_1_simple_shell)|Manual page our of Simple Shell|
+|[man_1_simple_shell](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/man_1_simple_shel)|Manual page our of Simple Shell|
 |[main.h](https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/main.h)|Prototypes functions and headers|
 
 ## Flowchart
