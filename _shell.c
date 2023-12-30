@@ -5,9 +5,11 @@
  * create_full_path - creates full path from single command
  * @command: single command
  * @program_name: name of the program
+ *
+ * Return: 0 on success, -1 on fail
  */
 
-void create_full_path(char **command, char *program_name)
+int create_full_path(char **command, char *program_name)
 {
 	int length_command = strlen(*command);
 	char *tmp, *single_path, *path;
@@ -18,7 +20,7 @@ void create_full_path(char **command, char *program_name)
 	{
 		free(path);
 		fprintf(stderr, "%s: 1: %s not found \n", program_name, *command);
-		exit(127);
+		return (-1);
 	}
 	single_path = strtok(path, ":");
 	while (single_path != NULL)
@@ -29,12 +31,11 @@ void create_full_path(char **command, char *program_name)
 		{
 			free(path);
 			free(tmp);
-			return;
+			return (-1);
 		}
 		strcpy(tmp, single_path);
 		strcat(tmp, "/");
 		strcat(tmp, *command);
-
 		if (access(tmp, X_OK) == -1)
 		{
 			free(tmp);
@@ -45,12 +46,25 @@ void create_full_path(char **command, char *program_name)
 			free(path);
 			free(*command);
 			*command = tmp;
-			return;
+			return (0);
 		}
 	}
 	free(path);
+	return (0);
 }
 
+/**
+ * free_array - frees elements of array not array itself
+ * @arr: 2d array
+ */
+
+void free_array(char **arr)
+{
+	int i;
+
+	for (i = 0; arr[i]; i++)
+		free(arr[i]);
+}
 
 /**
  * main - entry point
@@ -79,15 +93,18 @@ int main(int ac, char **av)
 			free(argv);
 			continue;
 		}
-		if (getenv("PATH"))
-			create_full_path(&argv[0], av[0]);
+		if (create_full_path(&argv[0], av[0]) == -1)
+		{
+			free_array(argv);
+			exit(127);
+		}
+
 		fork_id = fork();
 		if (fork_id == 0)
 		{
 			if (execve(argv[0], argv, environ) == -1)
 			{
-				for (i = 0; argv[i]; i++)
-					free(argv[i]);
+				free_array(argv);
 				free(argv);
 				fprintf(stderr, "%s: %s\n", av[0], strerror(errno));
 			}
@@ -95,10 +112,8 @@ int main(int ac, char **av)
 		}
 		else
 			wait(&status);
-		for (i = 0; argv[i]; i++)
-			free(argv[i]);
+		free_array(argv);
 		free(argv);
 	}
-	free(line);
 	return (0);
 }
