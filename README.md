@@ -162,7 +162,7 @@ Simple shell 0.4 +
 
 ## Flowchart
 
-<p align="middle"><img src="https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/simple_shell.png"></p>
+<p align="center"><img src="https://github.com/Arzumirzeb/holbertonschool-simple_shell/blob/master/simple_shell.png"></p>
 
 ## Authors
 *	Yashar Heyderov-[Github]https://github.com/heydarov93/
