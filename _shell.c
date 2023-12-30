@@ -53,7 +53,7 @@ int main(int ac, char **av)
 		}
 		for (i = 0; argv[i]; i++)
 			free(argv[i]);
-		free(argv);
+	`	free(argv);
 	}
 	free(line);
 	return (0);
